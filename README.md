@@ -6,7 +6,7 @@ But du projet : créer un système de gestion de clients avec une notion de séc
 
 Nous décidons d’utiliser Python 3 comme langage de programmation avec une base de données SQLite
 
-Une carte est valide si : 
+<b> Une carte est valide si :</b> 
 Date non expirée, numéro correct, etc?
 
 Un client peut payer si :
