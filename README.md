@@ -31,6 +31,32 @@ Serveur HTTPS qui héberge un simple site web qui contient en partie un formulai
 
 Ajout de Regex pour tester les chaînes de caractères.
 
+Logiciel de test par séquencement d'actions
 http://www.celenium.com/
 
+# Structure de données
+<b>Client</b><br>
+Cette classe comporte les données relatives au client.
+Champs:
+- Id
+- Nom
+- Prenom
+- Adresse
+
+<b>Cb</b><br>
+Chaque client dispose d'une ou plusieurs CB ainsi leur(s) informations sont stockées de manière sécurisée.
+Le système vérifie le numéro de la carte et la date d'expiration lors de son renseignement.
+- Id
+- Numero
+- Expiration
+- Cryptogramme
+
+<b>Compte</b><br>
+Le client peut approviser son compte et régler avec son compte.
+Lors d'un achat le système vérifie le montant du compte ou alors la présence d'une carte disponible.
+- Id
+- Client
+- Montant
+- ListeCB
+- ListeAchat
 
