@@ -6,6 +6,6 @@
     <label class="admin">Password : </label>
     <input class="admin" type="password" name="pwd"/>
     <button class="admin" type="submit">Connecter</button>
-   
   </form>
+  <a href="index.php?page=inscription">S'inscrire</a>
 </article>
