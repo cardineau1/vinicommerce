@@ -1,5 +1,7 @@
-<body>
-
+<?php
+  session_start();
+  session_destroy();
+?>
     <!-- Top content -->
     <div class="top-content">
       
@@ -31,11 +33,11 @@
                       
                         <div class="form-group">
                           <label class="sr-only" for="form-username">Nom d'utilisateur</label>
-                            <input type="text" name="form-username" placeholder="Nom d'utilisateur..." class="form-username form-control" id="form-username">
+                            <input type="text" name="user" placeholder="Nom d'utilisateur..." class="form-username form-control" id="form-username">
                           </div>
                           <div class="form-group">
                             <label class="sr-only" for="form-password">Mot de passe</label>
-                            <input type="password" name="form-password" placeholder="Mot de passe..." class="form-password form-control" id="form-password">
+                            <input type="password" name="pwd" placeholder="Mot de passe..." class="form-password form-control" id="form-password">
                           </div>
                           <button type="submit" class="btn">Se connecter !</button>
                           
@@ -57,20 +59,7 @@
                               }
                             }
                           ?>
-                          
-                          
-                      </form>
-                      
-                      <?php
-                        session_start();
-                        if(isset($_SESSION['user']))
-                        {
-                        echo "<a href=\"index.php?page=compte\">Mon compte</a>";
-                        echo "<a href=\"php/deconnexion.php\">Déconnnexion</a>";
-                        }
-                      ?>
-                      
-                      
+                      </form>                    
                     </div>
                   </div>
                 </div>
@@ -101,5 +90,3 @@
     <!--[if lt IE 10]>
         <script src="assets/js/placeholder.js"></script>
     <![endif]-->
-
-</body>
