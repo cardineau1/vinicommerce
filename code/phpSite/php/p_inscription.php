@@ -47,10 +47,12 @@
   }
   if(isset($_POST['naissance']))
   {
-    $naissance=$_POST['naissance'];
+    $chdate = $_POST['naissance'];
+    $date = date_create_from_format('d/m/Y', $chdate);
+    $naissance = date_format($date, 'Y-m-d');
   }
 
-  if(empty($email) || empty($mdp) || empty($civilite) || empty($nom) || empty($prenom) || empty($naissance))
+  if(empty($email) || empty($mdp) || empty($civilite) || empty($nom) || empty($prenom) || empty($chdate))
   {
     // Redirection vers la page index.php
     header('Location: index.php?page=inscription&error=0');
@@ -67,8 +69,8 @@
   {
     include("connect_bdd.php");
 
-    $req = "INSERT INTO DII5_21406725_COMMENTAIRE (username, email, commentaire) VALUES ('".$user."', '".$mail."', '".addslashes($comm)."');";
-header('Location: index.php?page=inscription&success');
+    $req = "INSERT INTO client (nom, prenom, dateNaissance, civilite, email, motdepasse) VALUES ('".$nom."', '".$prenom."', '".$dateNaissance."', '".$civilite."', '".$email."', '".md5($mdp)."');";
+
     if(mysqli_query($link, $req))
     {
       // Redirection vers la page index.php
