@@ -47,12 +47,10 @@
   }
   if(isset($_POST['naissance']))
   {
-    $chdate = $_POST['naissance'];
-    $date = date_create_from_format('d/m/Y', $chdate);
-    $naissance = date_format($date, 'Y-m-d');
+    $dateNaissance = $_POST['naissance'];
   }
 
-  if(empty($email) || empty($mdp) || empty($civilite) || empty($nom) || empty($prenom) || empty($chdate))
+  if(empty($email) || empty($mdp) || empty($civilite) || empty($nom) || empty($prenom))// || empty($chdate))
   {
     // Redirection vers la page index.php
     header('Location: index.php?page=inscription&error=0');
