@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<p>{% trans "Connexion" %}</p>
+<form method="post" action=".">
+  {% csrf_token %} <!-- Première défense contre l'attaque Cross site request forgery -->
+  <label>Username : </label>
+  <input type="text" name="user"/>
+  <br>
+  <label>Password : </label>
+  <input type="text" name="pwd"/>
+
+  <input type="submit" value="{% trans 'Log in' %}" />
+</form>
+
+{% endblock %}
