@@ -1,6 +1,5 @@
 <h1 class="admin">Inscription</h1>
 <article id="formulaire">
-  <a href="index.php">Retour</a>
   <form class="admin" id="form" action="index.php?page=p_inscription" method="post">  
     <label class="admin">Email* : </label>
     <input class="admin" type="text" name="email"/>
@@ -29,7 +28,8 @@
     <br>
 
     <button class="admin" type="submit">Créer mon compte</button>
-
+    <br>
+    <a href="index.php">Retour</a>
     <?php
       if(isset($_GET['error']))
       {
