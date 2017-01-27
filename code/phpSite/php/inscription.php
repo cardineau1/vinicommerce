@@ -24,7 +24,7 @@
     <label class="admin">Prénom* : </label>
     <input class="admin" type="text" name="prenom"/>
     <br>
-    <label class="admin">Date* : </label>
+    <label class="admin">Date naissance* : </label>
     <input type="date" name="naissance">
     <br>
 
