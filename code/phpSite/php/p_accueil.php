@@ -29,6 +29,7 @@
         {
           $res = $result->fetch_object();
           $_SESSION['user'] = $res->id;
+          $_SESSION['index'] = True;
 
           // Redirection vers la page index.php compte
           header("Location: index.php?page=compte&id=".$_SESSION['user']);
