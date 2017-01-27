@@ -28,9 +28,8 @@
         if($nb_res == 1)
         {
           $_SESSION['user'] = $result->fetch_object();
-          echo $_SESSION['user'];
           // Redirection vers la page index.php compte
-          //header('Location: index.php?page=compte');
+          header('Location: index.php?page=compte');
         }
         else
         {
@@ -48,4 +47,3 @@
     }
   }
 ?>
-Test

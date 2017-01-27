@@ -30,8 +30,10 @@
     session_start();
     if(isset($_SESSION['user']))
     {
-    echo "<a href=\"index.php?page=p_accueil\">Mon compte</a>";
+    echo "<a href=\"index.php?page=compte\">Mon compte</a>";
+    echo "<a href=\"php/deconnexion.php\">Déconnnexion</a>";
     }
   ?>
+  <br>
   <a href="index.php?page=inscription">S'inscrire</a>
 </article>
