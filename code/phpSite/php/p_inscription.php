@@ -1,5 +1,5 @@
 <?php
-  echo 'erreur1';
+
   $erreur = 0;
   if(isset($_POST['email']) && isset($_POST['confemail']))
   {
@@ -50,8 +50,6 @@
   {
     $dateNaissance = $_POST['naissance'];
   }
-
-echo 'erreur2';
 
   if(empty($email) || empty($mdp) || empty($civilite) || empty($nom) || empty($prenom) || empty($dateNaissance))
   {
