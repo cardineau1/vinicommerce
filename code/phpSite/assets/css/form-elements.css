@@ -1,5 +1,7 @@
 
 input[type="text"], 
+input[type="mail"],
+input[type="date"], 
 input[type="password"], 
 textarea, 
 textarea.form-control {
@@ -28,6 +30,8 @@ textarea.form-control {
 
 input[type="text"]:focus, 
 input[type="password"]:focus, 
+input[type="mail"]:focus,
+input[type="date"]:focus, 
 textarea:focus, 
 textarea.form-control:focus {
 	outline: 0;

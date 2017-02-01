@@ -29,7 +29,7 @@
                         </div>
                         </div>
                         <div class="form-bottom">
-                      <form role="form" action="index.php?page=p_accueil" method="post"" method="post" class="login-form">
+                      <form role="form" action="index.php?page=p_accueil" method="post" class="login-form">
                       
                         <div class="form-group">
                           <label class="sr-only" for="form-username">Nom d'utilisateur</label>
