@@ -20,19 +20,16 @@
     {
       include("connect_bdd.php");
 
-      $req = "SELECT id FROM client WHERE email = '".$user."' AND motdepasse = '".md5($pwd)."';";
+      $req = "SELECT email FROM client WHERE email = '".$user."' AND motdepasse = '".md5($pwd)."';";
 
       if($result = mysqli_query($link, $req))
       {
         $nb_res = mysqli_num_rows($result);
         if($nb_res == 1)
         {
-          $res = $result->fetch_object();
-          $_SESSION['user'] = $res->id;
-          $_SESSION['index'] = True;
-
+          $_SESSION['user'] = $result->fetch_object();
           // Redirection vers la page index.php compte
-          header("Location: index.php?page=compte&id=".$_SESSION['user']);
+          header('Location: index.php?page=compte');
         }
         else
         {
