@@ -1,4 +1,5 @@
 <?php
+  echo 'erreur1';
   $erreur = 0;
   if(isset($_POST['email']) && isset($_POST['confemail']))
   {
@@ -50,10 +51,12 @@
     $dateNaissance = $_POST['naissance'];
   }
 
-  if(empty($email) || empty($mdp) || empty($civilite) || empty($nom) || empty($prenom))// || empty($chdate))
+echo 'erreur2';
+
+  if(empty($email) || empty($mdp) || empty($civilite) || empty($nom) || empty($prenom) || empty($dateNaissance))
   {
     // Redirection vers la page index.php
-    header('Location: index.php?page=inscription&error=0');
+    header('Location: index.php?page=inscription&error=0#form');
   }
   elseif($erreur == 1)
   {
@@ -72,7 +75,7 @@
     if(mysqli_query($link, $req))
     {
       // Redirection vers la page index.php
-      header('Location: index.php?page=inscription&success');
+      header('Location: index.php?page=inscription&success#form');
     }
     else
     {

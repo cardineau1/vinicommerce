@@ -13,7 +13,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3 form-box">
-                  <div class="form-top">
+                  <div class="form-top" id="form">
                     <div class="form-top-left">
                       <h3>Première étape de création de compte</h3>
                         <p>Entrez vos informations personnelles :</p>
@@ -61,6 +61,7 @@
                           <button type="submit" class="btn">Créer mon compte !</button>  
                           <br>                      
                           <div class="text-center">
+			      <br>
                               <a href="index.php">Retour</a>        
                           </div>
                           
