@@ -68,7 +68,8 @@
                   </div>
                 </div>
                 <div>
-                  Je n'ai pas de compte, j'aimerais <a href="index.php?page=inscription"><strong>remplir le formulaire d'inscription</strong></a>
+                  J'ai oublié mon mot de passe, j'aimerais <a href="index.php?page=mdpoublie"><strong>réinitialiser mon mot de passe</strong></a>.<br>
+                  Je n'ai pas de compte, j'aimerais <a href="index.php?page=inscription"><strong>remplir le formulaire d'inscription</strong></a>.
                 </div>
                 <!--<div class="row">
                     <div class="col-sm-6 col-sm-offset-3 social-login">

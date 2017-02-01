@@ -34,7 +34,7 @@
           
 
           // Redirection vers la page index.php compte
-          header('Location: index.php?page=compte&id='.$_SESSION['user']);
+          header('Location: index.php?page=compte');
         }
         else
         {
