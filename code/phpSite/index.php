@@ -37,12 +37,14 @@
 
   <article>
     <?php
+    
       if(!isset($_GET['page']))
       {
         include("php/accueil.php");
       }
       else
       {
+        include("php/nav.php");
         include("php/".$_GET['page'].".php");
       }
     ?>

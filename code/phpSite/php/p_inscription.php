@@ -50,7 +50,7 @@
     $dateNaissance = $_POST['naissance'];
   }
 
-  if(empty($email) || empty($mdp) || empty($civilite) || empty($nom) || empty($prenom)) || empty($dateNaissance))
+  if(empty($email) || empty($mdp) || empty($civilite) || empty($nom) || empty($prenom))// || empty($chdate))
   {
     // Redirection vers la page index.php
     header('Location: index.php?page=inscription&error=0');
