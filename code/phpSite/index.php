@@ -31,26 +31,25 @@
 </head>
 
 <body>
-  <?php
-    //include("php/header_nav.php");
-  ?>
-
   <article>
     <?php
-    
+      if(isset($_GET['page']) && $_GET['page'] == "compte")
+      {
+        include("php/nav.php");
+      }
       if(!isset($_GET['page']))
       {
         include("php/accueil.php");
       }
       else
       {
-        include("php/nav.php");
+        
         include("php/".$_GET['page'].".php");
       }
     ?>
   </article>
 
-  <?php #include("html/footer.html"); ?>
+  <?php //include("html/footer.html"); ?>
   
   <!-- Javascript -->
     <script src="assets/js/jquery-1.11.1.min.js"></script>
