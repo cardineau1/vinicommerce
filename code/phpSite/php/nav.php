@@ -24,9 +24,44 @@
         <!-- Collection of nav links, forms, and other content for toggling -->
         <div id="navbarCollapse" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="index.php?page=compte">Accueil</a></li>
-                <li><a href="index.php?page=compte&onglet=produit">Produits</a></li>
-                <li><a href="index.php?page=compte&onglet=moncompte">Mon compte</a></li>
+            
+            <?php
+               $page = "accueil" ; 
+               if(isset($_GET['page']))
+               {
+                  $page = $_GET['page'];
+               }
+
+               if($page == "produits")
+               {
+                  echo("<li><a class=\"active\" href=\"index.php?page=compte\">Accueil</a></li>");
+                  echo("<li><a href=\"index.php?page=compte&onglet=produit\">Produits</a></li>");
+                  echo("<li><a href=\"index.php?page=compte&onglet=moncompte\">Mon comte</a></li>");
+                  echo("<li><a href=\"index.php?page=compte&onglet=monpanier\">Mon panier</a></li>");
+               }
+               else if($page == "monCompte")
+               {
+                  echo("<li><a href=\"index.php?page=compte\">Accueil</a></li>");
+                  echo("<li><a class=\"active\" href=\"index.php?page=compte&onglet=produit\">Produits</a></li>");
+                  echo("<li><a href=\"index.php?page=compte&onglet=moncompte\">Mon comte</a></li>");
+                  echo("<li><a href=\"index.php?page=compte&onglet=monpanier\">Mon panier</a></li>");
+               }
+               else if($page == "monPanier")
+               {
+                  echo("<li><a href=\"index.php?page=compte\">Accueil</a></li>");
+                  echo("<li><a href=\"index.php?page=compte&onglet=produit\">Produits</a></li>");
+                  echo("<li><a class=\"active\" href=\"index.php?page=compte&onglet=moncompte\">Mon comte</a></li>");
+                  echo("<li><a href=\"index.php?page=compte&onglet=monpanier\">Mon panier</a></li>");
+               }
+               else
+               {
+                  echo("<li><a href=\"index.php?page=compte\">Accueil</a></li>");
+                  echo("<li><a href=\"index.php?page=compte&onglet=produit\">Produits</a></li>");
+                  echo("<li><a href=\"index.php?page=compte&onglet=moncompte\">Mon comte</a></li>");
+                  echo("<li><a class=\"active\" href=\"index.php?page=compte&onglet=monpanier\">Mon panier</a></li>");    
+               }
+            ?>
+
             </ul>
           
             <ul class="nav navbar-nav navbar-right">
@@ -35,4 +70,4 @@
         </div>
     </nav>
 </div>
-                              		
+                              	
