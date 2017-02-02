@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost
--- Généré le :  Jeu 02 Février 2017 à 15:04
+-- Généré le :  Jeu 02 Février 2017 à 15:48
 -- Version du serveur :  10.1.20-MariaDB
 -- Version de PHP :  7.0.15
 
@@ -19,6 +19,9 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `vinicommerce`
 --
+DROP DATABASE IF EXISTS `vinicommerce`;
+CREATE DATABASE IF NOT EXISTS `vinicommerce` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `vinicommerce`;
 
 -- --------------------------------------------------------
 
@@ -26,6 +29,7 @@ SET time_zone = "+00:00";
 -- Structure de la table `adresse`
 --
 
+DROP TABLE IF EXISTS `adresse`;
 CREATE TABLE `adresse` (
   `id` int(11) NOT NULL,
   `libelle` varchar(50) NOT NULL,
@@ -53,6 +57,7 @@ INSERT INTO `adresse` (`id`, `libelle`, `adresse`, `complement`, `ville`, `codeP
 -- Structure de la table `carteDePaiement`
 --
 
+DROP TABLE IF EXISTS `carteDePaiement`;
 CREATE TABLE `carteDePaiement` (
   `id` int(11) NOT NULL,
   `libelle` varchar(50) NOT NULL,
@@ -76,6 +81,7 @@ INSERT INTO `carteDePaiement` (`id`, `libelle`, `nomPorteur`, `numero`, `dateExp
 -- Structure de la table `client`
 --
 
+DROP TABLE IF EXISTS `client`;
 CREATE TABLE `client` (
   `id` int(11) NOT NULL,
   `nom` varchar(50) NOT NULL,
@@ -103,6 +109,7 @@ INSERT INTO `client` (`id`, `nom`, `prenom`, `dateNaissance`, `civilite`, `email
 -- Structure de la table `lienClientCarte`
 --
 
+DROP TABLE IF EXISTS `lienClientCarte`;
 CREATE TABLE `lienClientCarte` (
   `id_client` int(11) NOT NULL,
   `id_carteDePaiement` int(11) NOT NULL
@@ -122,6 +129,7 @@ INSERT INTO `lienClientCarte` (`id_client`, `id_carteDePaiement`) VALUES
 -- Structure de la table `lienTransactionProduit`
 --
 
+DROP TABLE IF EXISTS `lienTransactionProduit`;
 CREATE TABLE `lienTransactionProduit` (
   `id_transaction` int(11) NOT NULL,
   `id_produit` int(11) NOT NULL
@@ -141,6 +149,7 @@ INSERT INTO `lienTransactionProduit` (`id_transaction`, `id_produit`) VALUES
 -- Structure de la table `produit`
 --
 
+DROP TABLE IF EXISTS `produit`;
 CREATE TABLE `produit` (
   `id` int(11) NOT NULL,
   `libelle` varchar(100) NOT NULL,
@@ -161,6 +170,7 @@ INSERT INTO `produit` (`id`, `libelle`, `montant`) VALUES
 -- Structure de la table `transaction`
 --
 
+DROP TABLE IF EXISTS `transaction`;
 CREATE TABLE `transaction` (
   `id` int(11) NOT NULL,
   `id_client` int(11) NOT NULL,
@@ -184,6 +194,7 @@ INSERT INTO `transaction` (`id`, `id_client`, `date`, `id_typeTransaction`, `id_
 -- Structure de la table `typeAdresse`
 --
 
+DROP TABLE IF EXISTS `typeAdresse`;
 CREATE TABLE `typeAdresse` (
   `id` int(11) NOT NULL,
   `libelle` varchar(100) NOT NULL
@@ -204,6 +215,7 @@ INSERT INTO `typeAdresse` (`id`, `libelle`) VALUES
 -- Structure de la table `typeTransaction`
 --
 
+DROP TABLE IF EXISTS `typeTransaction`;
 CREATE TABLE `typeTransaction` (
   `id` int(11) NOT NULL,
   `libelle` varchar(100) NOT NULL
@@ -359,3 +371,9 @@ ALTER TABLE `transaction`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+--
+-- Création utilisateur
+--
+GRANT USAGE ON *.* TO 'vinicommerce'@'%' IDENTIFIED BY PASSWORD '*7FA2E1FF7439648A967EFDCB215D33E197BC5892';
+GRANT ALL PRIVILEGES ON `vinicommerce`.* TO 'vinicommerce'@'%';
