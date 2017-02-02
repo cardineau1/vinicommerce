@@ -1,5 +1,5 @@
 <?php
-  echo "debug1";
+  echo "erreurPhP";
   session_start();
   if(!isset($_SESSION['user']))
   {   
