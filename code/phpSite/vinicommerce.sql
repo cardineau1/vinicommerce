@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost
--- Généré le :  Jeu 26 Janvier 2017 à 11:28
+-- Généré le :  Jeu 02 Février 2017 à 15:04
 -- Version du serveur :  10.1.20-MariaDB
--- Version de PHP :  7.0.14
+-- Version de PHP :  7.0.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -28,6 +28,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `adresse` (
   `id` int(11) NOT NULL,
+  `libelle` varchar(50) NOT NULL,
   `adresse` varchar(100) NOT NULL,
   `complement` varchar(100) DEFAULT NULL,
   `ville` varchar(50) NOT NULL,
@@ -37,6 +38,15 @@ CREATE TABLE `adresse` (
   `id_typeAdresse` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Contenu de la table `adresse`
+--
+
+INSERT INTO `adresse` (`id`, `libelle`, `adresse`, `complement`, `ville`, `codePostal`, `pays`, `id_client`, `id_typeAdresse`) VALUES
+(1, 'Maison', '6 Rue Grande Rue', 'Appt 12', 'Tours', '37200', 'France', 1, 1),
+(2, 'Travail', '52 Place de la Liberté', NULL, '37000', 'Tours', 'France', 2, 2),
+(3, 'Appartement', '3 Boulevard Granger', 'Appt 1528', 'Joué-Lès-Tours', '37300', 'France', 2, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -45,11 +55,20 @@ CREATE TABLE `adresse` (
 
 CREATE TABLE `carteDePaiement` (
   `id` int(11) NOT NULL,
+  `libelle` varchar(50) NOT NULL,
   `nomPorteur` varchar(100) NOT NULL,
   `numero` varchar(255) NOT NULL,
   `dateExpiration` date NOT NULL,
-  `empreinte` blob NOT NULL
+  `empreinte` blob
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `carteDePaiement`
+--
+
+INSERT INTO `carteDePaiement` (`id`, `libelle`, `nomPorteur`, `numero`, `dateExpiration`, `empreinte`) VALUES
+(1, 'Compte commun', 'SAULNIER', '12369874125896325', '2018-02-01', NULL),
+(2, 'Compte courant', 'CARDINEAU', '8899625436978501', '2019-06-01', NULL);
 
 -- --------------------------------------------------------
 
@@ -66,8 +85,17 @@ CREATE TABLE `client` (
   `email` varchar(100) NOT NULL,
   `telephone` varchar(15) DEFAULT NULL,
   `motdepasse` varchar(255) NOT NULL,
-  `solde` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `solde` float NOT NULL DEFAULT '0',
+  `valid` bit(1) NOT NULL DEFAULT b'0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+
+--
+-- Contenu de la table `client`
+--
+
+INSERT INTO `client` (`id`, `nom`, `prenom`, `dateNaissance`, `civilite`, `email`, `telephone`, `motdepasse`, `solde`, `valid`) VALUES
+(1, 'Saulnier', 'Vincent', '1994-04-19', 'H', 'vincent.saulnier@gmail.com', NULL, '098f6bcd4621d373cade4e832627b4f6', 0, b'0'),
+(2, 'Cardineau', 'Loic', '1994-10-10', 'H', 'loic@vinicommerce.fr', NULL, '098f6bcd4621d373cade4e832627b4f6', 0, b'0');
 
 -- --------------------------------------------------------
 
@@ -80,6 +108,14 @@ CREATE TABLE `lienClientCarte` (
   `id_carteDePaiement` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
+--
+-- Contenu de la table `lienClientCarte`
+--
+
+INSERT INTO `lienClientCarte` (`id_client`, `id_carteDePaiement`) VALUES
+(1, 1),
+(2, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -90,6 +126,14 @@ CREATE TABLE `lienTransactionProduit` (
   `id_transaction` int(11) NOT NULL,
   `id_produit` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+
+--
+-- Contenu de la table `lienTransactionProduit`
+--
+
+INSERT INTO `lienTransactionProduit` (`id_transaction`, `id_produit`) VALUES
+(1, 1),
+(1, 2);
 
 -- --------------------------------------------------------
 
@@ -103,6 +147,14 @@ CREATE TABLE `produit` (
   `montant` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Contenu de la table `produit`
+--
+
+INSERT INTO `produit` (`id`, `libelle`, `montant`) VALUES
+(1, 'Casque Gamer', 62.78),
+(2, 'Barrette mémoire 4G DDR3 1300MHz', 52.65);
+
 -- --------------------------------------------------------
 
 --
@@ -112,10 +164,19 @@ CREATE TABLE `produit` (
 CREATE TABLE `transaction` (
   `id` int(11) NOT NULL,
   `id_client` int(11) NOT NULL,
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `id_typeTransaction` int(11) NOT NULL,
   `id_adresse` int(11) DEFAULT NULL,
-  `id_carteDePaiement` int(11) NOT NULL
+  `id_carteDePaiement` int(11) NOT NULL,
+  `montant` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `transaction`
+--
+
+INSERT INTO `transaction` (`id`, `id_client`, `date`, `id_typeTransaction`, `id_adresse`, `id_carteDePaiement`, `montant`) VALUES
+(1, 1, '2017-02-02 15:11:42', 1, 2, 1, 115.43);
 
 -- --------------------------------------------------------
 
@@ -128,6 +189,15 @@ CREATE TABLE `typeAdresse` (
   `libelle` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Contenu de la table `typeAdresse`
+--
+
+INSERT INTO `typeAdresse` (`id`, `libelle`) VALUES
+(1, 'Facturation'),
+(2, 'Livraison'),
+(3, 'Facturation et Livraison');
+
 -- --------------------------------------------------------
 
 --
@@ -138,6 +208,14 @@ CREATE TABLE `typeTransaction` (
   `id` int(11) NOT NULL,
   `libelle` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `typeTransaction`
+--
+
+INSERT INTO `typeTransaction` (`id`, `libelle`) VALUES
+(1, 'Achat'),
+(2, 'Approvisionnement');
 
 --
 -- Index pour les tables exportées
@@ -213,37 +291,37 @@ ALTER TABLE `typeTransaction`
 -- AUTO_INCREMENT pour la table `adresse`
 --
 ALTER TABLE `adresse`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `carteDePaiement`
 --
 ALTER TABLE `carteDePaiement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `client`
 --
 ALTER TABLE `client`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `produit`
 --
 ALTER TABLE `produit`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT pour la table `typeAdresse`
 --
 ALTER TABLE `typeAdresse`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `typeTransaction`
 --
 ALTER TABLE `typeTransaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Contraintes pour les tables exportées
 --
